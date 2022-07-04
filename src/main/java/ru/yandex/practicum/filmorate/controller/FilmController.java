@@ -40,8 +40,12 @@ public final class FilmController {
     public Film addFilm(@Valid @RequestBody Film film) throws ValidationException {
         final long id = film.getId();
 
+        if (data.containsKey(id)) {
+            throw new ValidationException("Фильм с таким идентификатором уже существует.");
+        }
+
         if (id < 0) {
-            throw new ValidationException();
+            throw new ValidationException("Идентификатор фильма не может быть меньше 0.");
         }
 
         data.put(id, film);
