@@ -1,9 +1,13 @@
 package ru.yandex.practicum.filmorate.model;
 
 import lombok.Data;
+import org.springframework.lang.NonNull;
 
-import java.time.Duration;
-import java.util.Date;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 /**
  * Модель фильма.
@@ -24,20 +28,26 @@ public final class Film {
     /**
      * Название.
      */
+    @NonNull
+    @NotBlank
     private final String name;
 
     /**
      * Описание.
      */
+    @Size(max = 200)
     private final String description;
 
     /**
      * Дата выпуска в прокат (дата релиза).
      */
-    private final Date releaseDate;
+    @PastOrPresent
+    private final LocalDate releaseDate;
 
     /**
      * Длительность.
      */
-    private final Duration duration;
+    @Min(1)
+    private final int duration;
+
 }
