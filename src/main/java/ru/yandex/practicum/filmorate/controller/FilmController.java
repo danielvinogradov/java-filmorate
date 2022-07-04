@@ -18,7 +18,7 @@ public final class FilmController {
     /**
      * Данные о фильмах.
      */
-    private static final Map<Long, Film> data = new HashMap<>();
+    private final Map<Long, Film> data = new HashMap<>();
 
     /**
      * Получить все фильмы.

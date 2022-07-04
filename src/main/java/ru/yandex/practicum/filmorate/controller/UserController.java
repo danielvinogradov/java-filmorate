@@ -15,7 +15,7 @@ import java.util.Map;
 @RequestMapping("/users")
 public final class UserController {
 
-    private static final Map<Long, User> data = new HashMap<>();
+    private final Map<Long, User> data = new HashMap<>();
 
     /**
      * Получить всех пользователей.
