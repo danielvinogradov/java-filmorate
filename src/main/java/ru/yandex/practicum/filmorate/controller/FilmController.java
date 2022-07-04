@@ -1,11 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
@@ -16,6 +12,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
+@RequestMapping("/films")
 public final class FilmController {
 
     /**
@@ -28,7 +25,7 @@ public final class FilmController {
      *
      * @return Список всех фильмов (порядок добавления не сохраняется).
      */
-    @GetMapping("/films")
+    @GetMapping
     public Collection<Film> getAllFilms() {
         return data.values();
     }
@@ -38,7 +35,7 @@ public final class FilmController {
      *
      * @return Добавленный фильм.
      */
-    @PostMapping("/films")
+    @PostMapping
     public Film addFilm(@Valid @RequestBody Film film) throws ValidationException {
         final long id = film.getId();
 
@@ -63,7 +60,7 @@ public final class FilmController {
      *
      * @return Обновленный фильм.
      */
-    @PutMapping("/films")
+    @PutMapping
     public Film updateFilm(@Valid @RequestBody Film film) throws ValidationException {
         final long id = film.getId();
 

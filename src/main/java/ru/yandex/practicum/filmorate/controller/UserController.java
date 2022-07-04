@@ -1,11 +1,7 @@
 package ru.yandex.practicum.filmorate.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 
@@ -16,6 +12,7 @@ import java.util.Map;
 
 @Slf4j
 @RestController
+@RequestMapping("/users")
 public final class UserController {
 
     private static final Map<Long, User> data = new HashMap<>();
@@ -25,7 +22,7 @@ public final class UserController {
      *
      * @return Список всех пользователей (порядок добавления не сохраняется).
      */
-    @GetMapping("/users")
+    @GetMapping
     public Collection<User> getAllUsers() {
         return data.values();
     }
@@ -37,7 +34,7 @@ public final class UserController {
      * @return Объект нового пользователя.
      * @throws ValidationException Исключение в случае невалидных данных.
      */
-    @PostMapping("/users")
+    @PostMapping
     public User addUser(@Valid @RequestBody User user) throws ValidationException {
         final long id = user.getId();
 
@@ -64,7 +61,7 @@ public final class UserController {
      * @return Записанный объект нового пользователя.
      * @throws ValidationException Исключение в случае невалидных данных.
      */
-    @PutMapping("/users")
+    @PutMapping
     public User updateUser(@Valid @RequestBody User user) throws ValidationException {
         final long id = user.getId();
 
