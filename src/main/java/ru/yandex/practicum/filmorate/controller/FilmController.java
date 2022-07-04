@@ -1,10 +1,8 @@
 package ru.yandex.practicum.filmorate.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
@@ -13,6 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public final class FilmController {
 
@@ -50,7 +49,10 @@ public final class FilmController {
 
         data.put(id, film);
 
-        return data.get(id);
+        final Film addedFilm = data.get(id);
+        log.info(String.format("Добавлен новый фильм: %s.", addedFilm));
+
+        return addedFilm;
     }
 
     /**
@@ -68,7 +70,10 @@ public final class FilmController {
 
         data.put(id, film);
 
-        return data.get(id);
+        final Film updatedFilm = data.get(id);
+        log.info(String.format("Обновлен фильм: %s.", updatedFilm));
+
+        return updatedFilm;
     }
 
 }

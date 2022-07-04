@@ -1,5 +1,6 @@
 package ru.yandex.practicum.filmorate.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
@@ -9,6 +10,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public final class UserController {
 
@@ -45,7 +47,10 @@ public final class UserController {
 
         data.put(id, user);
 
-        return data.get(id);
+        final User addedUser = data.get(id);
+        log.info(String.format("Добавлен новый пользователь: %s.", addedUser));
+
+        return addedUser;
     }
 
     /**
@@ -69,7 +74,10 @@ public final class UserController {
 
         data.put(id, user);
 
-        return data.get(id);
+        final User updatedUser = data.get(id);
+        log.info(String.format("Обновлен пользователь: %s.", updatedUser));
+
+        return updatedUser;
     }
 
 }
