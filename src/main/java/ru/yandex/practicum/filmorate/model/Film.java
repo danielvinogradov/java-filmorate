@@ -12,9 +12,14 @@ import java.util.Date;
 public final class Film {
 
     /**
+     * Источник уникальных идентификаторов {@link #id} и счетчик добавленных фильмов.
+     */
+    private static long counter = 1;
+
+    /**
      * Уникальный целочисленный идентификатор.
      */
-    private final long id;
+    private final long id = counter++;
 
     /**
      * Название.
