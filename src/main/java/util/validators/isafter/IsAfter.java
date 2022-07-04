@@ -24,7 +24,7 @@ public @interface IsAfter {
      *
      * @return Сообщение об ошибке.
      */
-    String message() default "{javax.validation.constraints.After.message}";
+    String message() default "date is too early";
 
     Class<?>[] groups() default {};
 
