@@ -1,4 +1,4 @@
-package ru.yandex.practicum.filmorate.controller.filmcontroller.models;
+package ru.yandex.practicum.filmorate.controller.filmcontroller.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

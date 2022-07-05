@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import ru.yandex.practicum.filmorate.controller.filmcontroller.models.FilmModelNoId;
-import ru.yandex.practicum.filmorate.controller.filmcontroller.models.FilmModelNoIdWFloatPointDuration;
-import ru.yandex.practicum.filmorate.controller.filmcontroller.models.FilmModelWId;
+import ru.yandex.practicum.filmorate.controller.filmcontroller.model.FilmModelNoId;
+import ru.yandex.practicum.filmorate.controller.filmcontroller.model.FilmModelNoIdWFloatPointDuration;
+import ru.yandex.practicum.filmorate.controller.filmcontroller.model.FilmModelWId;
 import ru.yandex.practicum.filmorate.model.Film;
 import util.ControllerTestHelper;
 
