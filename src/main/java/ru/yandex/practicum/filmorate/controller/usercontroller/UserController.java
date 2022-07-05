@@ -1,7 +1,13 @@
-package ru.yandex.practicum.filmorate.controller;
+package ru.yandex.practicum.filmorate.controller.usercontroller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import ru.yandex.practicum.filmorate.exceptions.IdentifierDoesNotExistException;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 
@@ -38,10 +44,12 @@ public final class UserController {
     public User addUser(@Valid @RequestBody User user) throws ValidationException {
         final long id = user.getId();
 
+        // временная проверка: передача идентификатора при создании новой сущности не подразумевается
         if (id < 0) {
             throw new ValidationException("Идентификатор пользователя не может быть меньше нуля.");
         }
 
+        // временная проверка: передача идентификатора при создании новой сущности не подразумевается
         if (data.containsKey(id)) {
             throw new ValidationException("Пользователь с указанным идентификатором уже существует.");
         }
@@ -59,18 +67,14 @@ public final class UserController {
      *
      * @param user Новый объект пользователя.
      * @return Записанный объект нового пользователя.
-     * @throws ValidationException Исключение в случае невалидных данных.
+     * @throws IdentifierDoesNotExistException Исключение в отсутствия идентификатора в базе.
      */
     @PutMapping
-    public User updateUser(@Valid @RequestBody User user) throws ValidationException {
+    public User updateUser(@Valid @RequestBody User user) throws IdentifierDoesNotExistException {
         final long id = user.getId();
 
-        if (id < 0) {
-            throw new ValidationException("Идентификатор пользователя не может быть меньше нуля.");
-        }
-
         if (!data.containsKey(id)) {
-            throw new ValidationException("Пользователя с указанным идентификатором не существует.");
+            throw new IdentifierDoesNotExistException("Пользователя с указанным идентификатором не существует.");
         }
 
         data.put(id, user);
