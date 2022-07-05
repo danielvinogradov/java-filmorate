@@ -54,6 +54,13 @@ public final class Film {
     @Min(1)
     private final int duration;
 
+    /**
+     * No args constructor for jackson.
+     */
+    public Film() {
+        this(null, "", null, null, 0);
+    }
+
     public Film(final @Nullable Long id,
                 final @NonNull String name,
                 final @Nullable String description,
