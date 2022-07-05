@@ -7,7 +7,6 @@ import util.validators.isafter.IsAfter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -25,7 +24,7 @@ public final class Film {
 
     /**
      * Уникальный целочисленный идентификатор.
-     *
+     * <p>
      * Здесь должна быть аннотация {@code @Min(1)}, но ее нет из-за особенностей тестов в ci.
      */
     private final long id;
@@ -46,7 +45,6 @@ public final class Film {
     /**
      * Дата выпуска в прокат (дата релиза).
      */
-    @PastOrPresent
     @IsAfter(value = "28-12-1895")
     private final LocalDate releaseDate;
 
@@ -58,8 +56,8 @@ public final class Film {
 
     public Film(final @Nullable Long id,
                 final @NonNull String name,
-                final String description,
-                final LocalDate releaseDate,
+                final @Nullable String description,
+                final @Nullable LocalDate releaseDate,
                 final int duration) {
         this.id = Objects.requireNonNullElseGet(id, () -> counter++);
 
