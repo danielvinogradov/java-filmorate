@@ -1,7 +1,8 @@
-package ru.yandex.practicum.filmorate.controller;
+package ru.yandex.practicum.filmorate.controller.filmcontroller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import ru.yandex.practicum.filmorate.exceptions.IdentifierDoesNotExistException;
 import ru.yandex.practicum.filmorate.exceptions.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
@@ -39,10 +40,12 @@ public final class FilmController {
     public Film addFilm(@Valid @RequestBody Film film) throws ValidationException {
         final long id = film.getId();
 
+        // временная проверка: передача идентификатора при создании новой сущности не подразумевается
         if (data.containsKey(id)) {
             throw new ValidationException("Фильм с таким идентификатором уже существует.");
         }
 
+        // временная проверка: передача идентификатора при создании новой сущности не подразумевается
         if (id < 0) {
             throw new ValidationException("Идентификатор фильма не может быть меньше 0.");
         }
@@ -61,11 +64,11 @@ public final class FilmController {
      * @return Обновленный фильм.
      */
     @PutMapping
-    public Film updateFilm(@Valid @RequestBody Film film) throws ValidationException {
+    public Film updateFilm(@Valid @RequestBody Film film) throws IdentifierDoesNotExistException {
         final long id = film.getId();
 
         if (!data.containsKey(id)) {
-            throw new ValidationException("Фильма с переданным идентификатором не существует в базе.");
+            throw new IdentifierDoesNotExistException("Фильма с переданным идентификатором не существует в базе.");
         }
 
         data.put(id, film);
