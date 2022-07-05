@@ -63,18 +63,25 @@ public final class User {
                 final @NonNull String login,
                 final @Nullable String name,
                 final @NonNull LocalDate birthday) {
-
         this.id = Objects.requireNonNullElseGet(id, () -> counter++);
-
         this.email = email;
         this.login = login;
-
-        if (name == null || name.isBlank()) {
-            this.name = login;
-        } else {
-            this.name = name;
-        }
-
+        this.name = name;
         this.birthday = birthday;
     }
+
+    /**
+     * Если имя is null || is blank, то в качестве имени для отображения
+     * используется login.
+     *
+     * @return Имя для отображения.
+     */
+    public String getName() {
+        if (this.name == null || this.name.isBlank()) {
+            return this.login;
+        }
+
+        return this.name;
+    }
+
 }
