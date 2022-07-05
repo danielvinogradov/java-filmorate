@@ -35,7 +35,7 @@ public final class User {
      */
     @NonNull
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Z0-1]+$")
+    @Pattern(regexp = "^\\w+$")
     private final String login;
 
     /**
