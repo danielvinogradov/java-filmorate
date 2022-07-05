@@ -1,7 +1,6 @@
 package ru.yandex.practicum.filmorate.exceptions;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
@@ -16,7 +15,7 @@ public final class IdentifierDoesNotExistException extends RuntimeException {
         this("Неизвестный идентификатор.");
     }
 
-    public IdentifierDoesNotExistException(final @NonNull String message) {
+    public IdentifierDoesNotExistException(String message) {
         super(message);
     }
 }

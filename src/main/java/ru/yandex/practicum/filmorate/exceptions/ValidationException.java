@@ -1,7 +1,5 @@
 package ru.yandex.practicum.filmorate.exceptions;
 
-import org.springframework.lang.NonNull;
-
 /**
  * Ошибка при валидации данных (переданные данные не валидны).
  */
@@ -11,7 +9,7 @@ public final class ValidationException extends RuntimeException {
         this("Данные не валидны.");
     }
 
-    public ValidationException(final @NonNull String message) {
+    public ValidationException(String message) {
         super(message);
     }
 }
