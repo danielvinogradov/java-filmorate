@@ -51,6 +51,13 @@ public final class User {
     @PastOrPresent
     private final LocalDate birthday;
 
+    /**
+     * No args constructor for jackson.
+     */
+    public User() {
+        this(null, "", "", null, LocalDate.now());
+    }
+
     public User(final @Nullable Long id,
                 final @NonNull String email,
                 final @NonNull String login,
