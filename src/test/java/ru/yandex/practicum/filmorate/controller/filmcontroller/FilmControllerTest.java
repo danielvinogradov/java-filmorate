@@ -307,4 +307,40 @@ final class FilmControllerTest {
                 .expectBody().isEmpty();
     }
 
+    /**
+     * Проверка корректности работы обновления фильмов.
+     *
+     * @see FilmController#updateFilm(Film)
+     */
+    @Test
+    void shouldCorrectlyUpdateFilm() throws IOException {
+        final FilmModelNoId film1 = new FilmModelNoId("Ricki Pullen Jamecia Derosa",
+                "Cream shortly consists instant values buffalo spirit, cult providing determine eliminate.",
+                LocalDate.of(1945, 2, 7), 120);
+
+        // добавляем фильм
+        final FilmModelWId createdFilm = webClient.post()
+                .bodyValue(objectMapper.writeValueAsString(film1))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(FilmModelWId.class)
+                .returnResult().getResponseBody();
+
+        assertNotNull(createdFilm);
+        assertNotNull(createdFilm.getId());
+
+        // модель обновленного фильма
+        final FilmModelWId expectedFilm = new FilmModelWId(createdFilm.getId(), "Qunicy Garey",
+                "Teddy pursuant dvd aboriginal.",
+                LocalDate.of(1946, 2, 8), 128);
+
+        // обновляем добавленный фильм
+        webClient.put()
+                .bodyValue(objectMapper.writeValueAsString(expectedFilm))
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(FilmModelWId.class)
+                .isEqualTo(expectedFilm);
+    }
+
 }
