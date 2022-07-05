@@ -5,7 +5,7 @@ import org.springframework.lang.NonNull;
 /**
  * Ошибка при валидации данных (переданные данные не валидны).
  */
-public final class ValidationException extends Exception {
+public final class ValidationException extends RuntimeException {
 
     public ValidationException() {
         this("Данные не валидны.");

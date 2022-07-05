@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * Хочется возвращать bad request, но тесты в ci ожидают именно 500.
  */
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-public final class IdentifierDoesNotExistException extends Exception {
+public final class IdentifierDoesNotExistException extends RuntimeException {
 
     public IdentifierDoesNotExistException() {
         this("Неизвестный идентификатор.");

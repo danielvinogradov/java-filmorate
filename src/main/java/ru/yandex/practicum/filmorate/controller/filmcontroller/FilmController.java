@@ -37,7 +37,7 @@ public final class FilmController {
      * @return Добавленный фильм.
      */
     @PostMapping
-    public Film addFilm(@Valid @RequestBody Film film) throws ValidationException {
+    public Film addFilm(@Valid @RequestBody Film film) {
         final long id = film.getId();
 
         // временная проверка: передача идентификатора при создании новой сущности не подразумевается
@@ -64,7 +64,7 @@ public final class FilmController {
      * @return Обновленный фильм.
      */
     @PutMapping
-    public Film updateFilm(@Valid @RequestBody Film film) throws IdentifierDoesNotExistException {
+    public Film updateFilm(@Valid @RequestBody Film film) {
         final long id = film.getId();
 
         if (!data.containsKey(id)) {

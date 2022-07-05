@@ -41,7 +41,7 @@ public final class UserController {
      * @throws ValidationException Исключение в случае невалидных данных.
      */
     @PostMapping
-    public User addUser(@Valid @RequestBody User user) throws ValidationException {
+    public User addUser(@Valid @RequestBody User user) {
         final long id = user.getId();
 
         // временная проверка: передача идентификатора при создании новой сущности не подразумевается
@@ -70,7 +70,7 @@ public final class UserController {
      * @throws IdentifierDoesNotExistException Исключение в отсутствия идентификатора в базе.
      */
     @PutMapping
-    public User updateUser(@Valid @RequestBody User user) throws IdentifierDoesNotExistException {
+    public User updateUser(@Valid @RequestBody User user) {
         final long id = user.getId();
 
         if (!data.containsKey(id)) {
